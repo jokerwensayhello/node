@@ -1,0 +1,39 @@
+
+{% extends './layout.html' %} 
+
+{% block content %}
+<div class="container-fuild">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">用户管理</a>
+        </li>
+        <li>用户列表</li>
+    </ol>
+    <table class="table table-hover">
+        <tr class="active">
+            <th>ID</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>权限</th>
+        </tr>
+        {% for user in users %} {% if user.isAdmin %}
+        <tr class="warning">
+            <th>{{ user.id }}</th>
+            <th>{{ user.username }}</th>
+            <th>{{ user.password }}</th>
+            <th>管理员</th>
+        </tr>
+        {% else %}
+        <tr class="success">
+            <th>{{ user.id }}</th>
+            <th>{{ user.username }}</th>
+            <th>{{ user.password }}</th>
+            <th>普通用户</th>
+        </tr>
+        {% endif %} {% endfor %}
+    </table>
+    {% include '../components/page.html' %}
+</div>
+
+
+{% endblock %}
